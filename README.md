@@ -1,6 +1,6 @@
 # SignalBackgroundTraining
 
-This repsository was born out of research on machine learning for trigger systems done for David Miller at The University of Chicago. I intend it to be for those continuing research in the same vein at UChicago. Hopefully, it will serve as a guide for how to set up the tools you need as well as how to run them on data in the formats that were given to me.
+This repository was born out of research on machine learning for trigger systems done for David Miller at The University of Chicago. I intend it to be for those continuing research in the same vein at UChicago. Hopefully, it will serve as a guide for how to set up the tools you need as well as how to run them on data in the formats that were given to me.
 
 The goal of this Github repsoitory is to train images of JZ0W (background) interactions and ZvvHbb (signal) interactions using Deep Learning such that we will be able to distinguish the two effectively. It will contain Keras and Caffe (coming soon) notebooks that run identical algorithms on the same data -- just adjusted for these two libraries.
 
