@@ -23,7 +23,7 @@ setupATLAS # initial setup (gets lsetup command)
 lsetup "lcgenv -p LCG_86 x86_64-slc6-gcc62-opt" # to see possible packages
 
 lsetup "lcgenv -p LCG_86 x86_64-slc6-gcc62-opt pip”. #set up pip
-Ls
+
 
 lsetup "lcgenv -p LCG_86 x86_64-slc6-gcc62-opt ROOT" #set up ROOT
 
@@ -35,7 +35,7 @@ lsetup "lcgenv -p LCG_86 x86_64-slc6-gcc62-opt pip" 
 
 ```
 
-You can transfer files as follows ...
+In order to transfer files between the Tier 3 and your own computer you will need to use the SCP command: `scp /path/to/file username@a:/path/to/destination`and the reverese command to send files back to your own computer for visualization and training. As far as Tier 3 and ROOT goes this should set you up alright.
 
 ## Visualizing data
 -- Notebook just for this. Allows you to see what happens to data
