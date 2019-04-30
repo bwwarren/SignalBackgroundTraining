@@ -99,6 +99,6 @@ def images_and_labels():
     #take just the image data, convert to a numpy array, and then reshape for training
     df.drop(df.columns[832], axis=1, inplace=True)
     images = np.array(df)
-    images_reshaped = images[:].reshape(-1, 26, 32)
+    images_reshaped = images[:].reshape(-1, 26, 32, 1) 
 
     return images_reshaped, labels
