@@ -3,6 +3,7 @@ np.random.seed(7)
 import pandas as pd
 import h5py
 from sklearn.utils import shuffle
+from sklearn import preprocessing
 
 def get_data(filename):
     """
@@ -44,6 +45,20 @@ def add_ones_or_zeros(data_frame, one_or_zero):
 
     data_frame["832"] = label_series
     return data_frame
+
+def normalize(image_data):
+    """
+        This normalizes the images individually using the sklearn preprocessing package.
+    """
+    norm_images = np.zeros(shape=(2000,26,32))
+    image_data = image_data[:].reshape(-1, 26, 32)
+    min_max_scaler = preprocessing.MinMaxScaler()
+
+    for i, image in enumerate(image_data):
+        image_normed = min_max_scaler.fit_transform(image)
+        norm_images[i] = image_normed
+    return norm_images
+
 
 def images_and_labels():
     """
@@ -99,6 +114,8 @@ def images_and_labels():
     #take just the image data, convert to a numpy array, and then reshape for training
     df.drop(df.columns[832], axis=1, inplace=True)
     images = np.array(df)
-    images_reshaped = images[:].reshape(-1, 26, 32, 1) 
+    images = normalize(images)
 
-    return images_reshaped, labels
+    images = images[:].reshape(-1, 26, 32, 1)
+
+    return images, labels
