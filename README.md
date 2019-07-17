@@ -2,7 +2,7 @@
 
 This repository was born out of research on machine learning for particle physics done for David Miller at The University of Chicago. I intend it to be for those continuing similar research for professor Miller at UChicago. Hopefully, it will serve as a guide for how to set up the tools you need as well as how to run them on data in the formats that were given to me.
 
-The goal of this Github repository is to train images of JZ0W (background) interactions and ZvvHbb (signal) interactions using Deep Learning such that we will be able to distinguish the two effectively. It will contain Keras and Caffe (coming soon) notebooks that run identical algorithms on the same data -- just adjusted for these two libraries.
+The goal of this Github repository is to train images of JZ0W (background) interactions and ZvvHbb (signal) interactions using Deep Learning such that we will be able to distinguish the two effectively. It will contain A visualization notebook, a training notebook, a python file with convenient functions defined, and all of the data that I used.
 
 The notebooks display and clean the data (format it from hdf5 to numpy, remove 0 values in images, and add labels). Then the data is shuffled and passed to a Convolution Neural Netork model to train the data. Finally, they look at the accuracy and loss of the CNN model and plot ROC curves to get a better sense of how the model is doing.
 
@@ -38,10 +38,15 @@ lsetup "lcgenv -p LCG_86 x86_64-slc6-gcc62-opt pip" 
 In order to transfer files between the Tier 3 and your own computer you will need to use the SCP command: `scp /path/to/file username@a:/path/to/destination`and the reverese command to send files back to your own computer for visualization and training. As far as Tier 3 and ROOT goes this should set you up alright.
 
 ## Visualizing data
--- Notebook just for this. Allows you to see what happens to data
--- Shows what I am doing when formatting the data
--- Separate from code that just adds labels and outputs data that is used for training
+The Visualization Notebook is here so that you can see how and why the data is cleaned. It takes in the images initially, cuts off the buffer region (Rows of 0's), labels the data, combines the background and signal images, shuffles them, and then finally plots them
+
+All of this is put in the images_and_labels function in the convert_python.py file so that it can all be done with one function call.
 
 ## Training data
--- just formatting of data that pipes straight into a NN (not a notebook, just a python file)
--- Use of collaboratory or UC Tier 3 (ML requires a lot of computing power)
+Some of the data preprocessing is done in this notebook. We need to convert our data into JPEG images for later use in something called DNNDK (Deep Neural Network Development Kit). This is another part of the project. All you need to know for the purposes of this notebook is that this requires a different input for our Network.
+
+After formatting the data, this notebook trains the data using different Convolutional Neural Networks (CNN). This is done using Keras -- with Tensor Flow as the backend. For this notebook I used 4 different CNN's: 1 Convolutional Layer, 2 Convolutional Layers, 1 Convolutional Layer and 1 Max Pooling Layer, and 2 Convolutional Layers and 2 Max Pooling Layers.
+
+
+Finally after training and comparing the Networks, we then convert this into a frozen graph that is used to create a TensorFlow graph which is required for the DNNDK.
+
